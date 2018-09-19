@@ -102,8 +102,9 @@ exports.postUser = (req, res) => {
 		})
 		.catch(err => {
 			if (err.reason = 'ValidationError') {
+        console.log('error here')
 				return res.status(err.code).json(err);
-			}t
+			};
 			res.status(500).json({code: 500, message: 'Internal Server Error'})
 		});
 };

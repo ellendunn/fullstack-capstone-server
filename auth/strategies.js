@@ -10,14 +10,14 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
   let user;
   User.findOne({username: username})
     .then(_user => {
-      user: _user;
+      user= _user;
       if (!user) {
         return Promise.reject({
           reason: 'LoginError',
           message: 'Incorrect Username or Password'
         });
       }
-      return user.validatePassword(passowrd);
+      return user.validatePassword(password);
     })
     .then(isValid => {
       if (!isValid) {
@@ -29,6 +29,8 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
       return callback(null, user)
     })
     .catch(err => {
+      console.log(err)
+
       if (err.reason === 'LoginError') {
         return callback(null, false, err);
       }
