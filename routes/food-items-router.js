@@ -1,7 +1,9 @@
 const router = require('express').Router();
-const controllers = require('../controllers/food-items')
+const passport = require('passport');
+const controllers = require('../controllers/food-items');
+const jwtAuth = passport.authenticate('jwt', {session: false});
 
-router.get('/', controllers.getFoodItems)
-router.post('/', controllers.postFoodItem)
+router.get('/', jwtAuth, controllers.getFoodItems)
+router.post('/', jwtAuth, controllers.postFoodItem)
 
 module.exports = {router}

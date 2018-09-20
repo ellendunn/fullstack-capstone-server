@@ -5,6 +5,7 @@ mongoose.Promise = global.Promise
 
 const foodItemSchema = mongoose.Schema({
 	food: {type: String, required: true},
+  container: {type: String, required: true},
   user: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
 })
 
@@ -22,6 +23,7 @@ foodItemSchema.methods.serialize = function() {
 	return {
 		id: this._id,
 		food: this.food,
+    container: this.container,
     user: this.user
 	}
 }
