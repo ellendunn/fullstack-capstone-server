@@ -2,20 +2,21 @@ const {FoodItem} = require('../models/food-item')
 const {User} = require('../models/user')
 
 exports.getFoodItems = (req, res) => {
-	console.log('getting foods')
-	FoodItem
-    .find({user: req.user.id})
-		.then(foods => res.json(foods.map(food => food.serialize())))
-		.then(res => console.log(res))
+	FoodItem.find()
+    // .find({user: req.user.id})
+		.then(foods => {
+			res.json({
+				fooditems: foods.map(
+					(food) => food.serialize())
+			})
+		})
     .catch(err => {
       console.error(err);
       res.status(500).json({message: 'Internal Server Error 1'})
     })
 }
 
-
 exports.postFoodItem = (req, res) => {
-	console.log(req.body)
   User
 	.findById(req.user.id)
   .then(user => {
@@ -23,9 +24,6 @@ exports.postFoodItem = (req, res) => {
       FoodItem.create({
 				food: req.body.food,
 				container: req.body.container})
-        // .then(food => {
-        //   return FoodItem.findById(food._id)
-        // })
         .then(food => {
           res.status(201).json(food.serialize())
         })
@@ -35,5 +33,12 @@ exports.postFoodItem = (req, res) => {
         })
     }
   })
+}
 
+exports.deleteFoodItem = (req, res) => {
+	console.log(req.params)
+	FoodItem
+	.findByIdAndRemove(req.params.id)
+	.then(item => res.status(204).end(0))
+	.catch(err => res.status(500).json({message: 'Internal Server Error 3'}))
 }
