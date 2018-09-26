@@ -3,7 +3,7 @@ const {User} = require('../models/user')
 
 exports.getFoodItems = (req, res) => {
 	FoodItem.find()
-    // .find({user: req.user.id})
+    .find({user: req.user.id})
 		.then(foods => {
 			res.json({
 				fooditems: foods.map(
@@ -23,7 +23,8 @@ exports.postFoodItem = (req, res) => {
     if (user) {
       FoodItem.create({
 				food: req.body.food,
-				container: req.body.container})
+				container: req.body.container,
+				user: req.user.id})
         .then(food => {
           res.status(201).json(food.serialize())
         })

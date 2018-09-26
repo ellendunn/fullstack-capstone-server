@@ -11,7 +11,6 @@ exports.getRecipesByIngredients = (req, res) => {
 }
 
 exports.getRecipeById = (req, res) => {
-  console.log(req.params, 'IM HERE')
   const recipeId = req.params.id;
   unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${recipeId}/information`)
     .header("X-Mashape-Key", process.env.RECIPES_KEY)
