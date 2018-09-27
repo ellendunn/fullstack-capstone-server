@@ -48,11 +48,11 @@ app.use('/api/recipes', recipesSearchRouter)
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-app.get('/api/protected', jwtAuth, (req, res) => {
-  return res.json({
-    data: 'protected data'
-  });
-});
+// app.get('/api/protected', jwtAuth, (req, res) => {
+//   return res.json({
+//     data: 'protected data'
+//   });
+// });
 
 app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Not Found' });
