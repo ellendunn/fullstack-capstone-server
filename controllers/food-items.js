@@ -37,7 +37,6 @@ exports.postFoodItem = (req, res) => {
 }
 
 exports.deleteFoodItem = (req, res) => {
-	console.log(req.params)
 	FoodItem
 	.findByIdAndRemove(req.params.id)
 	.then(item => res.status(204).end(0))

@@ -7,11 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "mocha --exit",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -30,5 +27,11 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "unirest": "^0.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.0.1",
+    "chai-http": "^3.0.0",
+    "faker": "^3.1.0",
+    "mocha": "^4.0.1"
   }
 }
