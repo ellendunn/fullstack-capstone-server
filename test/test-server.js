@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const faker = require('faker');
 
 const {app, runServer, closeServer} = require('../server');
-const {JWT_SECRET, TEST_DATABAS_URL} = require('../config');
+const {JWT_SECRET, TEST_DATABASE_URL} = require('../config');
 const {User} = require('../models/user')
 const {FoodItem} = require('../models/food-item')
 
@@ -22,7 +22,7 @@ describe('API', function() {
 
   it('should exist', function() {
     return chai.request(app)
-      .get('/api/')
+      .get('/api')
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.json;

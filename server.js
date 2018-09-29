@@ -20,13 +20,13 @@ const { PORT, DATABASE_URL } = require('./config')
 const app = express();
 app.use(express.json());
 
-// const cors = require('cors');
-//
-// app.use(
-//     cors({
-//         origin: 'http://localhost:3000'
-//     })
-// );
+const cors = require('cors');
+
+app.use(
+    cors({
+        origin: 'http://localhost:3000'
+    })
+);
 
 app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
@@ -47,12 +47,6 @@ app.use('/api/food-items', foodItemsRouter);
 app.use('/api/recipes', recipesSearchRouter)
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
-
-// app.get('/api/protected', jwtAuth, (req, res) => {
-//   return res.json({
-//     data: 'protected data'
-//   });
-// });
 
 app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Not Found' });
