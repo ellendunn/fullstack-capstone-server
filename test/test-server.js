@@ -20,11 +20,11 @@ describe('API', function() {
     return closeServer()
   })
 
-  it.only('should exist', function() {
-    return chai.request(fooditem)
+  it('should send 404 for nonexistent endpoint', function() {
+    return chai.request(app)
       .get('/api')
       .then(function(res) {
-        res.should.have.status(200);
+        res.should.have.status(404);
         res.should.be.json;
       });
   });

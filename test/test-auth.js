@@ -52,8 +52,8 @@ describe('Food Items API resource', function() {
   describe('POST to login endpoint', function() {
     it('should return a jwt token', function() {
       return chai
-        .request(foodItem)
-        .post('/auth/login')
+        .request(app)
+        .post('/api/auth/login')
         .send({ username, password })
         .then(res => {
           expect(res).to.have.status(200);

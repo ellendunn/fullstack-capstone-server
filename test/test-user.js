@@ -25,44 +25,40 @@ describe('FoodItems API resource', function() {
 		return runServer(TEST_DATABASE_URL, 8081);
 	});
 
-	beforeEach(function() {
-		return User.hashPassword(password)
-			.then(pswd => {
-				return User.create({
-					firstName, 
-					lastName,
-					username,
-					password: pswd
-				});
-			})
-			.then(user => {
-				id: user.id
-			})
-	})
+	// beforeEach(function() {
+	// 	return User.hashPassword(password)
+	// 		.then(pswd => {
+	// 			return User.create({
+	// 				firstName,
+	// 				lastName,
+	// 				username,
+	// 				password: pswd
+	// 			});
+	// 		})
+	// 		.then(user => {
+	// 			id: user.id
+	// 		})
+	// })
 
 	afterEach(function() {
 		return User.remove({})
 	})
 
 	after(function() {
-		return closeServer() 
+		return closeServer()
 	})
 
-	describe('POST to login endpoint', function() {
+	describe('POST to register endpoint', function() {
 		it('should return jwt auth token', function() {
 			return chai
-				.request(foodItem)
-				.post('/auth/login')
-				.send({username, password})
+				.request(app)
+				.post('/api/users')
+				.send({firstName, lastName, username, password})
 				.then(res => {
-					expect(res).to.have.status(200);
+					expect(res).to.have.status(201);
 					expect(res.body).to.be.an('object');
-					const token = res.body.authToken;
-					expect(token).to.be.a('string');
-					const payload = jwt.verify(token, JWT_SECRET, {
-						algorithm: ['HS256']
-					});
-					expect(payload.user).to.be.deep.equal({
+					const {id} = res.body
+					expect(res.body).to.be.deep.equal({
 						id,
 						firstName,
 						lastName,
@@ -73,11 +69,3 @@ describe('FoodItems API resource', function() {
 	});
 
 })
-
-
-
-
-
-
-
-

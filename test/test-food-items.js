@@ -15,7 +15,7 @@ function seedFoodItems(userId) {
 	const seedData = [];
 	for(i=1; i<=1; i++){
 		seedData.push(generateFoodItems(userId))
-	}	
+	}
 	return FoodItem.insertMany(seedData)
 }
 
@@ -50,8 +50,8 @@ describe('FoodItems API resource', function() {
 			})
 			.then(user => {
 				userId = user._id;
-				return chai.request(foodItem)
-					.post('/auth/login')
+				return chai.request(app)
+					.post('/api/auth/login')
 					.send({username, password})
 			})
 			.then(res => {
@@ -65,26 +65,26 @@ describe('FoodItems API resource', function() {
 	})
 
 	after(function() {
-		return closeServer() 
+		return closeServer()
 	})
 
 
 	describe('GET foodItems endpoint', function() {
 		it('should return all food items', function() {
 			let res;
-			return chai.request(foodItem)
-				.get('/food-items')
+			return chai.request(app)
+				.get('/api/food-items')
 				.set('Authorization', `Bearer ${jwt}`)
 				.then(function(res) {
 					expect(res).to.have.status(200);
 					expect(res).to.be.json;
-					expect(res.body.foodItems).to.have.lengthOf.at.least(1);
-					res.body.foodItems.forEach(function(foodItem) {
+					expect(res.body.fooditems).to.have.lengthOf.at.least(1);
+					res.body.fooditems.forEach(function(foodItem) {
 						expect(foodItem).to.be.a('object');
 						expect(foodItem).to.include.keys(
 							'food', 'container' )
 						});
-						resFood = res.body.foodItems[0];
+						resFood = res.body.fooditems[0];
 						return FoodItem.findById(resFood.id);
 				})
 				.then(foodItem => {
@@ -102,8 +102,8 @@ describe('FoodItems API resource', function() {
 				'container': 'pantry'
 			}
 
-			return chai.requiest(foodItem)
-				.post('./food-items')
+			return chai.request(app)
+				.post('/api/food-items')
 				.set('Authorization', `Bearer ${jwt}`)
 				.send(newFood)
 				.then(function(res) {
@@ -131,8 +131,8 @@ describe('FoodItems API resource', function() {
 				.findOne()
 				.then(function(_foodItem){
 					foodItem = _foodItem;
-					return chai.request(foodItem)
-					.delete(`/food-items/${foodItem.id}`)
+					return chai.request(app)
+					.delete(`/api/food-items/${foodItem.id}`)
 					.set('Authorization', `Bearer ${jwt}`)
 				})
 				.then(function(res) {
@@ -146,10 +146,3 @@ describe('FoodItems API resource', function() {
 	})
 
 })
-
-
-
-
-
-
-
