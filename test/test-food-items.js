@@ -3,8 +3,6 @@ const chaiHttp = require('chai-http');
 const mongoose = require('mongoose');
 const faker = require('faker');
 
-const jwt = require('jsonwebtoken');
-
 const {app, runServer, closeServer} = require('../server')
 const {JWT_SECRET, TEST_DATABASE_URL} = require('../config');
 const {FoodItem} = require('../models/food-item')
@@ -15,7 +13,7 @@ chai.use(chaiHttp);
 
 function seedFoodItems(userId) {
 	const seedData = [];
-	for(i=1; i<=1-; i++){
+	for(i=1; i<=1; i++){
 		seedData.push(generateFoodItems(userId))
 	}	
 	return FoodItem.insertMany(seedData)
@@ -37,9 +35,9 @@ const username='username';
 const password='password';
 let jwt, userId
 
-describe('Applications API resource', function() {
+describe('FoodItems API resource', function() {
 	before(function() {
-		return runServer(TEST_DATABASE_URL, 8080);
+		return runServer(TEST_DATABASE_URL, 8081);
 	});
 
 	beforeEach(function() {
@@ -80,8 +78,8 @@ describe('Applications API resource', function() {
 				.then(function(res) {
 					expect(res).to.have.status(200);
 					expect(res).to.be.json;
-					expect(res.body.applications).to.have.lengthOf.at.least(1);
-					res.body.applications.forEach(function(foodItem) {
+					expect(res.body.foodItems).to.have.lengthOf.at.least(1);
+					res.body.foodItems.forEach(function(foodItem) {
 						expect(foodItem).to.be.a('object');
 						expect(foodItem).to.include.keys(
 							'food', 'container' )

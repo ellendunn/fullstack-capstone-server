@@ -13,15 +13,15 @@ chai.use(chaiHttp);
 
 describe('API', function() {
   before(function() {
-    return runServer(TEST_DATABASE_URL, 8080)
+    return runServer(TEST_DATABASE_URL, 8081)
   });
 
   after(function() {
     return closeServer()
   })
 
-  it('should exist', function() {
-    return chai.request(app)
+  it.only('should exist', function() {
+    return chai.request(fooditem)
       .get('/api')
       .then(function(res) {
         res.should.have.status(200);

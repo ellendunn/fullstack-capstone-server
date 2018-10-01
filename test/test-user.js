@@ -22,7 +22,7 @@ let id;
 describe('FoodItems API resource', function() {
 
 	before(function() {
-		return runServer(TEST_DATABASE_URL, 8080);
+		return runServer(TEST_DATABASE_URL, 8081);
 	});
 
 	beforeEach(function() {
@@ -51,7 +51,7 @@ describe('FoodItems API resource', function() {
 	describe('POST to login endpoint', function() {
 		it('should return jwt auth token', function() {
 			return chai
-				.request(app)
+				.request(foodItem)
 				.post('/auth/login')
 				.send({username, password})
 				.then(res => {

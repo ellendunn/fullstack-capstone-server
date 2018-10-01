@@ -23,7 +23,7 @@ let id;
 describe('Food Items API resource', function() {
 
   before(function () {
-    return runServer(TEST_DATABASE_URL, 8080);
+    return runServer(TEST_DATABASE_URL, 8081);
   });
 
   beforeEach(function() {
