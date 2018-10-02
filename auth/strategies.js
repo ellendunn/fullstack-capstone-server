@@ -13,22 +13,12 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
       user= _user;
       if (!user) {
         return 	callback(null, false); //401
-
-        // return Promise.reject({
-        //   reason: 'LoginError',
-        //   message: 'Incorrect Username or Password'
-        // });
       }
       return user.validatePassword(password);
     })
     .then(isValid => {
       if (!isValid) {
         return 	callback(null, false); //401
-
-        // return Promise.reject({
-        //   reason: 'LoginError',
-        //   message: 'Incorrect Username or Password'
-        // })
       }
       return callback(null, user)
     })
