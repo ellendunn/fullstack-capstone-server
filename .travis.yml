@@ -1,7 +1,7 @@
 language: node_js
 node_js: node
 services:
-  - mongodb
+- mongodb
 addons:
   jwt:
-     secure: <JWT_SECRET ENCRYPTED>
+    secure: U/WnSD4tG+FK26W555BV2n0qAl/QO8DBsjpe9LBjcoYgV/nti8PwwOIr+GICW3Edk9R7jNw2e6z0DF7Sny4jtsEOwnthAHJEZq5Vz2jLyArP8oIF69Z3awl+NODC8aRsAYbacJrY+MV9ExnDo3gNzTIYKKWrm3fEzaEZH/XPR6GL6ebWqb9MHjv/uu/+QR+/vJsHdDjCbV535XZ7WLGIcl6AOhEP2WLDkwDCShUksl8GwDp8qUpm3DA/3f2YDPgWzyoSoyA4PMBPxAWMe0EicIeCwLetpuEhD6fGd0icBWnzHLKaKCA51GiSO5eCfzZh0mdfMPx6inkBIhHeE6xg+G+BbVQd5lRJL6K0uHP3VE0gx2I5EcaMjibshqQ0iVx97FfucRXmqgEM+9Z42uBugLgvjCVJ69kq2362sYZysUke2fl/nRaReJuUdUvj+eil291uf6ZvHT/a57qbF5wwinScliXdpuKg9nVtojPIWUPmgR1Gm9Bz8XGMmJz4kogO4+04cPnBm6H5gjz6MIfz7l1L6WUwHbmF6QE/cjOZQ4ADh7CJym2ImZJRqaQsOdluzfsd/m5G6uq8/WIV+0QcAtngCl1dESitHkP1++VxzubGdF3KvgnBICERAOGneUbwaiRk8wkABN3794MDAVYSWqnBOmJ7q5pxdZ7DU03qpVA=
