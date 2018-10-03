@@ -24,7 +24,7 @@ const cors = require('cors');
 
 app.use(
     cors({
-        origin: 'http://kitchensmart.herokuapp.com'
+        origin: 'https://kitchensmart.herokuapp.com'
     })
 );
 

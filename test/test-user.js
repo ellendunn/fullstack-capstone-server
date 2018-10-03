@@ -25,21 +25,6 @@ describe('FoodItems API resource', function() {
 		return runServer(TEST_DATABASE_URL, 8081);
 	});
 
-	// beforeEach(function() {
-	// 	return User.hashPassword(password)
-	// 		.then(pswd => {
-	// 			return User.create({
-	// 				firstName,
-	// 				lastName,
-	// 				username,
-	// 				password: pswd
-	// 			});
-	// 		})
-	// 		.then(user => {
-	// 			id: user.id
-	// 		})
-	// })
-
 	afterEach(function() {
 		return User.remove({})
 	})
